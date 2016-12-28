@@ -1,13 +1,10 @@
 {
-  "name": "tracim_manage_ws",
+  "name": "highlight_timeout",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=development && webpack --watch",
-    "servdev": "webpack-dev-server --port 8082 --watch --colors --inline --hot --content-base dist/",
-    "build": "NODE_ENV=production webpack -p",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack --watch"
   },
   "author": "Côme Huguiès",
   "license": "ISC",
@@ -35,8 +32,6 @@
     "node-libs-browser": "^1.0.0",
     "react-addons-test-utils": "^15.4.0",
     "script-loader": "^0.7.0",
-    "standard": "^8.4.0",
-    "standard-loader": "^5.0.0",
     "style-loader": "^0.13.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^2.3.1",
@@ -44,19 +39,14 @@
     "webpack": "^1.14.0"
   },
   "dependencies": {
-    "bootstrap": "^3.3.7",
-    "classnames": "^2.2.5",
     "font-awesome": "^4.6.3",
-    "lodash.findindex": "^4.6.0",
-    "lodash.reject": "^4.4.0",
+    "moment": "^2.17.1",
     "react": "^15.3.2",
-    "react-bootstrap": "^0.30.5",
     "react-color": "^2.3.2",
     "react-dom": "^15.4.0",
     "react-redux": "^4.4.5",
     "redux": "^3.6.0",
     "redux-logger": "^2.7.0",
-    "redux-thunk": "^2.1.0",
     "whatwg-fetch": "^1.0.0"
   }
 }
