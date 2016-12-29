@@ -1,15 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { setTime } from '../action-creators.js'
+import { setTimerHalted } from '../action-creators.js'
 
-const moment = require('moment');
+const moment = require('moment')
 
 export class TimeSelector extends React.Component {
   constructor () {
     super()
     this.state = {
-      selectedTime: ''
+      selectedTime: '',
+      countdown: ''
     }
   }
 
@@ -19,29 +20,25 @@ export class TimeSelector extends React.Component {
 
   startTimer = () => {
     const input = this.state.selectedTime.split(':')
-
-    const timeout = moment({ hour: input[0], minute: input[1]})
-    // const now = moment()
-    // const diffTime = now.diff(timeout)
-    console.log('test')
-    console.log(timeout)
+    const timeout = moment({ hour: input[0], minute: input[1], seconde: 0 }).unix()
 
     let now
     let diffTimeout
-    window.setInterval(function () {
-      now = moment()
-      diffTimeout = timeout.diff(now, 'seconds')
-      if (diffTimeout <= 0) console.log('gg', diffTimeout)
-      else console.log('not gg : ', diffTimeout)
-    }, 200)
+    let duration
+    const countdownInterval = window.setInterval(() => {
+      now = moment().unix()
+      diffTimeout = timeout - now
+      duration = moment.duration(diffTimeout * 1000, 'milliseconds')
 
+      // console.log(timeout, now, diffTimeout, duration)
 
+      this.setState({...this.state, countdown: `${duration.hours()}:${duration.minutes()}:${duration.seconds()}`})
 
-    // if (timeout.isValid()) {
-      // console.log('woot', timeout)
-      // this.setState({selectedTime: timeout.format('HH:mm')})
-    // } else console.log(timeout)
-    // this.setState({selectedTime: e.target.value})
+      if (diffTimeout <= 0) {
+        window.clearInterval(countdownInterval)
+        this.props.dispatch(setTimerHalted(true))
+      }
+    }, 1000)
   }
 
   showTimer = () => {
@@ -57,12 +54,12 @@ export class TimeSelector extends React.Component {
         </label>
         <button onClick={this.startTimer}>Validate</button>
         <br />
-        <div className='displayTimer'>Result : { this.showTimer() }</div>
+        <div className='displayTimer'>Result : { this.state.countdown }</div>
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ time }) => ({ time })
+const mapStateToProps = ({ timerHalted }) => ({ timerHalted })
 
 export default connect(mapStateToProps)(TimeSelector)

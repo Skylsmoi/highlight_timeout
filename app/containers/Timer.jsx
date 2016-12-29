@@ -5,12 +5,12 @@ export class Timer extends React.Component {
   render () {
     return (
       <div className='Timer'>
-        { this.props.time }
+        { this.props.timerHalted }
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ time }) => ({ time })
+const mapStateToProps = ({ timerHalted }) => ({ timerHalted })
 
 export default connect(mapStateToProps)(Timer)

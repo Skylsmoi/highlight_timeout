@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import time from './time.js'
+import timerHalted from './timerHalted.js'
 
 const coreReducer = combineReducers({
-  time
+  timerHalted
 })
 
 export default coreReducer

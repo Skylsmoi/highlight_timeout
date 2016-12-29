@@ -9,7 +9,7 @@ export class HighlightTimeout extends React.Component {
     return (
       <div className='HighlightTimeout'>
         {
-          this.props.time === 0
+          this.props.timerHalted === false
             ? <TimeSelector />
             : <Timer />
         }
@@ -18,6 +18,6 @@ export class HighlightTimeout extends React.Component {
   }
 }
 
-const mapStateToProps = ({ time }) => ({ time })
+const mapStateToProps = ({ timerHalted }) => ({ timerHalted })
 
 export default connect(mapStateToProps)(HighlightTimeout)

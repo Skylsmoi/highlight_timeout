@@ -1,5 +1,5 @@
-export const SET_TIME = 'SET_TIME'
+export const SET_TIMERHALTED = 'SET_TIMERHALTED'
 
-export function setTime (time) {
-  return { type: SET_TIME, time }
+export function setTimerHalted (timerHalted) {
+  return { type: SET_TIMERHALTED, timerHalted }
 }
